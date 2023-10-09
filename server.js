@@ -62,11 +62,11 @@ db.connect((err) => {
   });
 
   app.post('/registro_cliente', (req, res) => {
-    const { correo,nombres,apellidos,telefono} = req.body; 
+    const { correo,nombres,apellidos,telefono,clave} = req.body; 
   
-    const sql = 'INSERT INTO cliente (correo,nombres,apellidos,telefono ) VALUES (?,?,?,?)';
+    const sql = 'INSERT INTO cliente (correo,nombres,apellidos,telefono,clave ) VALUES (?,?,?,?,?)';
   
-    db.query(sql, [correo,nombres,apellidos,telefono], (err, result) => {
+    db.query(sql, [correo,nombres,apellidos,telefono,clave], (err, result) => {
       if (err) {
         console.error('Error al insertar datos:', err);
         res.status(500).json({ message: 'Error al insertar datos en la base de datos' });
