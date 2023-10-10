@@ -58,7 +58,6 @@ db.connect((err) => {
         res.status(500).json({ error: 'Error al obtener registros' });
       } else {
         res.json(result);
-        console.log(res.json(result));
       }
     });
   });
