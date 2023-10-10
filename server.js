@@ -49,15 +49,16 @@ db.connect((err) => {
 
   app.get('/api/clientes/login', (req, res) => {
 
-    const {correo,clave}=req.body;
+    const DATA= {correo,clave};
     const sql='select * from cliente where correo = ? and clave = ?'
 
-    db.query(sql,[correo,clave] ,(err, result) => {
+    db.query(sql, DATA ,(err, result) => {
       if (err) {
         console.error('Error al obtener registros:', err);
         res.status(500).json({ error: 'Error al obtener registros' });
       } else {
         res.json(result);
+        console.log(res.json(result));
       }
     });
   });
