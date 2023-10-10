@@ -47,12 +47,12 @@ db.connect((err) => {
     });
   });
 
-  app.get('/api/clientes/login', (req, res) => {
+  app.post('/api/clientes/login', (req, res) => {
 
-    const DATA= {correo,clave};
+    const {correo,clave}=req.body;
     const sql='select * from cliente where correo = ? and clave = ?'
 
-    db.query(sql, DATA ,(err, result) => {
+    db.query(sql,[correo,clave],(err, result) => {
       if (err) {
         console.error('Error al obtener registros:', err);
         res.status(500).json({ error: 'Error al obtener registros' });
