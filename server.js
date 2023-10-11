@@ -5,7 +5,9 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json())
 
+
 const mysql = require('mysql');
+
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -78,7 +80,8 @@ db.connect((err) => {
     });
   });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor en ejecución en el puerto ${PORT}`);
-});
+  const PORT = process.env.PORT || 3000;
+
+  app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+  });
