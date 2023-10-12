@@ -24,9 +24,10 @@ db.connect((err) => {
   });
 
 
-  app.get('/api/productos', (req, res) => {
+  app.post('/api/productos', (req, res) => {
     const sql = 'SELECT * FROM producto'; 
-    db.query(sql, (err, result) => {
+    const {ficticio}=req.body;
+    db.query(sql,[ficticio] ,(err, result) => {
       if (err) {
         console.error('Error al obtener registros:', err);
         res.status(500).json({ error: 'Error al obtener registros' });
@@ -36,10 +37,10 @@ db.connect((err) => {
     });
   });
 
-  app.get('/api/productos/:id_producto', (req, res) => {
-    const id_producto = `'`+req.params.id_producto+`'`;
-    const sql=`select * from producto where id=`+id_producto;
-    db.query(sql, (err, result) => {
+  app.post('/api/detalle_producto', (req, res) => {
+    const {id_producto}=req.body
+    const sql=`select * from producto where id=?`;
+    db.query(sql,[id_producto] ,(err, result) => {
       if (err) {
         console.error('Error al obtener registros:', err);
         res.status(500).json({ error: 'Error al obtener registros' });
