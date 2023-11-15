@@ -79,6 +79,38 @@ db.connect((err) => {
     });
   });
 
+  app.post('/hacer_orden', (req, res) => {
+    const { id,fecha,correo_cliente,valor_total,estado,domiciliario_encargado,ubicacion,metodo_pago} = req.body; 
+  
+    const sql = 'INSERT INTO orden VALUES (?,?,?,?,?,?,?,?)';
+  
+    db.query(sql, [id,fecha,correo_cliente,valor_total,estado,domiciliario_encargado,ubicacion,metodo_pago], (err, result) => {
+      if (err) {
+        console.error('Error al insertar datos:', err);
+        res.status(500).json({ message: 'Error al insertar datos en la base de datos' });
+      } else {
+        console.log('Datos insertados correctamente');
+        res.status(200).json({ message: 'Datos insertados correctamente' });
+      }
+    });
+  });
+
+  app.post('/producto_orden', (req, res) => {
+    const {id_producto,id_orden,cantidad,valor} = req.body; 
+  
+    const sql = 'INSERT INTO orden VALUES (?,?,?,?)';
+  
+    db.query(sql, [id_producto,id_orden,cantidad,valor], (err, result) => {
+      if (err) {
+        console.error('Error al insertar datos:', err);
+        res.status(500).json({ message: 'Error al insertar datos en la base de datos' });
+      } else {
+        console.log('Datos insertados correctamente');
+        res.status(200).json({ message: 'Datos insertados correctamente' });
+      }
+    });
+  });
+
   const PORT = process.env.PORT || 3000;
 
   app.listen(PORT, () => {
