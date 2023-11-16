@@ -79,7 +79,7 @@ db.connect((err) => {
     });
   });
 
-  app.post('/hacer_orden', (req, res) => {
+  app.post('/api/hacer_orden', (req, res) => {
     const { id,fecha,correo_cliente,valor_total,estado,domiciliario_encargado,ubicacion,metodo_pago} = req.body; 
   
     const sql = 'INSERT INTO orden VALUES (?,?,?,?,?,?,?,?)';
@@ -95,7 +95,7 @@ db.connect((err) => {
     });
   });
 
-  app.post('/producto_orden', (req, res) => {
+  app.post('/api/producto_orden', (req, res) => {
     const {id_producto,id_orden,cantidad,valor} = req.body; 
   
     const sql = 'INSERT INTO orden VALUES (?,?,?,?)';
