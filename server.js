@@ -68,7 +68,7 @@ db.connect((err) => {
   
     const sql = 'INSERT INTO cliente (correo,nombres,apellidos,telefono,clave ) VALUES (?,?,?,?,?)';
   
-    db.query(sql, [correo,nombres,apellidos,telefono,clave], (err, result) => {
+    db.query(sql, [correo,nombres,apellidos,telefono,clave,0], (err, result) => {
       if (err) {
         console.error('Error al insertar datos:', err);
         res.status(500).json({ message: 'Error al insertar datos en la base de datos' });
