@@ -82,7 +82,7 @@ db.connect((err) => {
   app.post('/api/hacer_orden', (req, res) => {
     const { id,fecha,correo_cliente,valor_total,estado,domiciliario_encargado,ubicacion,metodo_pago} = req.body; 
   
-    const sql = 'INSERT INTO orden VALUES (?,?,?,?,?,?,?,?)';
+    const sql = 'INSERT INTO orden (id,fecha,correo_cliente,valor_total,estado,domiciliario_encargado,ubicacion,metodo_pago) VALUES (?,?,?,?,?,?,?,?)';
   
     db.query(sql, [id,fecha,correo_cliente,valor_total,estado,domiciliario_encargado,ubicacion,metodo_pago], (err, result) => {
       if (err) {
@@ -98,7 +98,7 @@ db.connect((err) => {
   app.post('/api/producto_orden', (req, res) => {
     const {id_producto,id_orden,cantidad,valor} = req.body; 
   
-    const sql = 'INSERT INTO orden VALUES (?,?,?,?)';
+    const sql = 'INSERT INTO producto_orden VALUES (?,?,?,?)';
   
     db.query(sql, [id_producto,id_orden,cantidad,valor], (err, result) => {
       if (err) {
